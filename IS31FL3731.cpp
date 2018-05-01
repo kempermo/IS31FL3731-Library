@@ -9,7 +9,7 @@
 IS31FL3731::IS31FL3731(uint8_t x, uint8_t y){
 }
 
-boolean Adafruit_IS31FL3731::begin(uint8_t addr) {
+boolean IS31FL3731::begin(uint8_t addr) {
   Wire.begin();
 
   _i2caddr = addr;

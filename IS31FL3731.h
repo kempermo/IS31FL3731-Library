@@ -37,4 +37,6 @@ class IS31FL3731 {
     void selectBank(uint8_t bank);
     void writeRegister8(uint8_t bank, uint8_t reg, uint8_t data);
     uint8_t _i2caddr, _frame;
-}
+};
+
+#endif
