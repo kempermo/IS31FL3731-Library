@@ -25,7 +25,7 @@
 
 class IS31FL3731 {
   public:
-    IS31FL3731(uint8_t x=16, uint8_t y=9);
+    IS31FL3731(uint8_t x=11, uint8_t y=11);
     boolean begin(uint8_t addr = ISSI_ADDR_DEFAULT);
     void drawPixel(int16_t x, int16_t y, uint16_t color);
     void clear(void);

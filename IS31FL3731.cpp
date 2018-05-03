@@ -6,6 +6,8 @@
 #define _swap_int16_t(a, b) { int16_t t = a; a = b; b = t; }
 #endif
 
+uint8_t conversion_table [] = {0,1,2,3,4,5,6,7,8,9,10,16,17,18,19,20,21,22,23,24,25,26,32,33,34,35,36,37,38,39,40,41,42,48,49,50,51,52,53,54,55,56,57,58,64,65,66,67,68,69,70,71,72,73,74,80,81,82,83,84,85,86,87,88,89,90,96,97,98,99,100,101,102,103,104,105,106,112,113,114,115,116,117,118,119,120,121,122,15,31,47,63,79,95,111,127,143,142,141,14,30,46,62,78,94,110,126,107,108,76,13,29,45,61,77,93,109,125,12,28,44,27,11,59};
+
 IS31FL3731::IS31FL3731(uint8_t x, uint8_t y){
 }
 
@@ -57,15 +59,15 @@ void IS31FL3731::clear(void) {
 
 void IS31FL3731::setLEDPWM(uint8_t lednum, uint8_t pwm, uint8_t bank) {
   if (lednum >= 144) return;
-  writeRegister8(bank, 0x24+lednum, pwm);
+  writeRegister8(bank, 0x24+conversion_table[lednum], pwm);
 }
 
 void IS31FL3731::drawPixel(int16_t x, int16_t y, uint16_t color) {
-  if ((x < 0) || (x >= 16)) return;
-  if ((y < 0) || (y >= 9)) return;
+  if ((x < 0) || (x >= 11)) return;
+  if ((y < 0) || (y >= 11)) return;
   if (color > 255) color = 255; // PWM 8bit max
 
-  setLEDPWM(x + y*16, color, _frame);
+  setLEDPWM(x + y*11, color, _frame);
   return;
 }
 
