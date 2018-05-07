@@ -14,6 +14,7 @@ IS31FL3731::IS31FL3731(uint8_t x, uint8_t y){
 
 boolean IS31FL3731::begin(uint8_t addr) {
   Wire.begin();
+  Wire.setClock(400000);
 
   _i2caddr = addr;
   _frame = 0;
@@ -38,7 +39,12 @@ boolean IS31FL3731::begin(uint8_t addr) {
     for (uint8_t i=0; i<=0x11; i++)
       writeRegister8(f, i, 0xff);     // each 8 LEDs on
   }
-
+  /*
+  for(int i=0; i<123; i++)
+  {
+    writeRegister8(f, i, 0xff);
+  }
+  */
   return true;
 }
 
